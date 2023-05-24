@@ -1,0 +1,96 @@
+<div style="width: 30%;margin: auto;">
+    <form #form="ngForm" (ngSubmit)="onFormSubmit(form)">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" [(ngModel)]="userInfo.firstName" name="firstName" class="form-control" id="firstName"
+                placeholder="Enter your First Name" required minlength="3" #firstName="ngModel" [appBanWords]="isPassportNeeded(yearOfBirth) ? ['test'] : []">
+            <div class="input-error" *ngIf="firstName.dirty && firstName.hasError('required')"> This field is required
+            </div>
+            <div class="input-error" *ngIf="firstName.dirty && firstName.hasError('minlength')"> This field is too short
+            </div>
+            <div class="input-error" *ngIf="firstName.dirty && firstName.hasError('appBanWords')"> The word <strong>{{firstName.getError('appBanWords').banWords}}</strong> isn't allowed
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" [(ngModel)]="userInfo.lastName" name="lastName" class="form-control" id="lastName"
+                placeholder="Enter your Last Name" required minlength="3" #lastName="ngModel">
+            <div class="input-error" *ngIf="lastName.dirty && lastName.hasError('required')"> This field is required
+            </div>
+            <div class="input-error" *ngIf="lastName.dirty && lastName.hasError('minlength')"> This field is too short
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="nickName">Nick Name</label>
+            <input type="text" [(ngModel)]="userInfo.nickName" name="nickName" class="form-control" id="nickName"
+                placeholder="Enter your Nick Name" required minlength="3" pattern="^[\w.]+$" #nickName="ngModel">
+            <div class="input-error" *ngIf="nickName.dirty && nickName.hasError('required')"> This field is required
+            </div>
+            <div class="input-error" *ngIf="nickName.dirty && nickName.hasError('minlength')"> This field is too short
+            </div>
+            <div class="input-error" *ngIf="nickName.dirty && nickName.hasError('patten')"> This field is in a wrong
+                format</div>
+        </div>
+        <div class="form-group">
+            <label for="emailAddress">Email Address</label>
+            <input type="text" class="form-control" [(ngModel)]="userInfo.email" name="email" id="emailAddress"
+                placeholder="Enter your Email Address" email #emailAddress="ngModel">
+            <div class="input-error" *ngIf="emailAddress.dirty && emailAddress.hasError('email')"> This field is in a
+                wrong format for email</div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="dataOfBirth">Date Of Birth</label>
+                <select id="dataOfBirth" [(ngModel)]="userInfo.yearOfBirth" #yearOfBirth="ngModel" name="yearOfBirth" class="form-control">
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                    <option value="2015">2015</option>
+                    <option value="2014">2014</option>
+                    <option value="2013">2013</option>
+                    <option value="2012">2012</option>
+                    <option value="2011">2011</option>
+                    <option value="2010">2010</option>
+                    <option value="2009">2009</option>
+                    <option value="2008">2008</option>
+                    <option value="2007">2007</option>
+                    <option value="2006">2006</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="passport">Passport</label>
+                <input type="text" [(ngModel)]="userInfo.passport" name="passport" class="form-control" id="passport"
+                    placeholder="Enter your Passport" pattern="^[A-Z]{3}[0-9]{6}$" #passport="ngModel" [required]="isPassportNeeded(yearOfBirth)">
+                <div class="input-error" *ngIf="passport.dirty && passport.hasError('pattern')"> This field is in a
+                    wrong format</div>
+                <div class="input-error" *ngIf="passport.hasError('required')"> This field is required</div>
+            </div>
+        </div>
+        <fieldset ngModelGroup="address">
+            <legend>Address</legend>
+            <div class="form-group">
+                <label for="fullAddress">Full Address</label>
+                <input type="text" [(ngModel)]="userInfo.fullAddress" name="fullAddress" class="form-control"
+                    id="fullAddress" placeholder="Enter your Full Address" required #fullAddress="ngModel">
+                <div class="input-error" *ngIf="fullAddress.dirty && fullAddress.hasError('required')"> This field is
+                    required</div>
+
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" [(ngModel)]="userInfo.city" name="city" class="form-control" id="city"
+                    placeholder="Enter your City" required #city="ngModel">
+                <div class="input-error" *ngIf="city.dirty && city.hasError('required')"> This field is required</div>
+            </div>
+            <div class="form-group">
+                <label for="postCode">Post Code</label>
+                <input type="number" [(ngModel)]="userInfo.postCode" name="postCode" class="form-control" id="postCode"
+                    placeholder="Enter your Post Code">
+            </div>
+        </fieldset>
+        <br>
+        <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+    </form>
+</div>
