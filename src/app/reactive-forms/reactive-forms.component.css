@@ -1,0 +1,37 @@
+.ng-valid.ng-dirty:not([ngModelGroup]):not(form):not([formGroupName]):not([formArrayName]){
+    border: 2px solid green;
+}
+
+.ng-invalid.ng-dirty:not([ngModelGroup]):not(form):not([formGroupName]):not([formArrayName]){
+    border: 2px solid red;
+}
+
+button[disabled]{
+    background-color: gray;
+    border-color: 2px solid black;
+    cursor: none;
+}
+
+button:not([disabled]){
+    cursor: pointer;
+}
+
+@keyframes input-error-message{
+    from{
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.input-error{
+    color:red;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 2px 13px;
+    animation-name: input-error-message;
+    animation-duration: 500ms;
+}
