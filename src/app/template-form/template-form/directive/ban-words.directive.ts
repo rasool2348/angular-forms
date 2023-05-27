@@ -26,7 +26,7 @@ export class BanWordsDirective implements Validator {
   private onChange: () => void = () => {};
   
   validate(control: AbstractControl<string>): ValidationErrors|null {
-    return this._bannedWords.length > 0 && this._bannedWords.findIndex(word => word?.toLowerCase() === control?.value.toLowerCase()) > -1 
+    return this._bannedWords.length > 0 && this._bannedWords.findIndex(word => word?.toLowerCase() === control?.value?.toLowerCase()) > -1 
     ? {appBanWords : { banWords : control.value}}
     :null
   }

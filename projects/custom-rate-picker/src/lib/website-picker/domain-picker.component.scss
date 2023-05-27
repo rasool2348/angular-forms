@@ -7,16 +7,14 @@
   height: 3rem;
   background-color: aliceblue;
 }
-i{
-  cursor: pointer;
-  font-size: 2rem;
-  flex:0 1 33%;
-}
 
-.active{
-  background-color: aqua;
+@mixin flex-value($value) {
+  font-size: 1rem;
+  flex:0 1 $value;
 }
-
-.isDisabled{
-  background-color: gray;
+input{
+  @include flex-value(70%);
+}
+select{
+  @include flex-value(30%);
 }

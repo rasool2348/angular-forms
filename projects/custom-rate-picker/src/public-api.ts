@@ -3,3 +3,4 @@
  */
 
 export * from './lib/custom-rate-picker.component';
+export * from './lib/website-picker/domain-picker.component';

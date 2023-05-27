@@ -1,0 +1,13 @@
+<div class="container">
+  <div>
+    <input type="text" placeholder="your domain..." [(ngModel)]="value.host" (input)="changeValue()" (blur)="onTouch()" [disabled]="disabled">
+  </div>
+  <div>
+    <select [(ngModel)]="value.domain" (blur)="onTouch()" (change)="changeSelection()" [disabled]="disabled">
+      <option value='.org'>.org</option>
+      <option value='.com'>.com</option>
+      <option value='.ir'>.ir</option>
+      <option value='.net'>.net</option>
+    </select>
+  </div>
+</div>
