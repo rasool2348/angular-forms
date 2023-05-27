@@ -5,6 +5,10 @@
             <label for="firstName">First Name</label>
             <input type="text" name="firstName" class="form-control" id="firstName"
                 placeholder="Enter your First Name" formControlName='firstName'>
+            <div class="input-error" *ngIf="form.controls.firstName.dirty && form.controls.firstName.hasError('required')"> This is a required field</div>
+            <div class="input-error" *ngIf="form.controls.firstName.dirty && form.controls.firstName.hasError('BanNameValidator')">You are not allowed to use {{form.controls.firstName.getError('BanNameValidator').banWords}} for names</div>
+            <div class="input-error" *ngIf="form.controls.firstName.dirty && form.controls.firstName.hasError('checkname')">name {{form.controls.firstName.getError('checkname').checkname}} is already taken</div>
+            <div class="input-info" *ngIf="form.controls.firstName.pending">checking the name ...</div>
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
@@ -46,6 +50,8 @@
                 <label for="passport">Passport</label>
                 <input type="text" name="passport" class="form-control" id="passport"
                     placeholder="Enter your Passport" formControlName='passport'>
+                <div class="input-error" *ngIf="form.controls.passport.dirty && form.controls.passport.hasError('required')"> This is a required field for Adult</div>
+
             </div>
         </div>
         <fieldset formGroupName="address">

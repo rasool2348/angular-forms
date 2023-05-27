@@ -35,3 +35,11 @@ button:not([disabled]){
     animation-name: input-error-message;
     animation-duration: 500ms;
 }
+.input-info{
+    color:blue;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 2px 13px;
+    animation-name: input-error-message;
+    animation-duration: 500ms;
+}

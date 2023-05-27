@@ -1,0 +1,17 @@
+<div style="width: 30%;margin: auto;">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="review">
+        <h3>Custom Form</h3>
+        <!-- <paper-textarea 
+            ngDefaultControl
+            placeholder="your honest review..." 
+            label="your text" 
+            rows="2"
+            formControlName="reviewText"></paper-textarea> -->
+        <div contenteditable formControlName="reviewText" style="background-color: brown;border-radius: 1rem;padding:0.5rem;"> 
+            <H4>Title...</H4>
+            <p>Describe your Expreience...</p>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+

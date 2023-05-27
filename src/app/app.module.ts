@@ -4,21 +4,25 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 import { TemplateFormComponent } from './template-form/template-form/template-form.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CustomRatePickerComponent } from './custom-rate-picker/custom-rate-picker.component';
 
 const routes:Routes = [
   {path:'', redirectTo:'template-forms', pathMatch:'full'},
   {path:'template-forms', component:TemplateFormComponent},
   {path:'reactive-forms', component:ReactiveFormsComponent},
+  {path:'custom-form-control', component:CustomRatePickerComponent},
   
 ]
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],
