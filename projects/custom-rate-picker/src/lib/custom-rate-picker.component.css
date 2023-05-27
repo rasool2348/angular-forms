@@ -1,0 +1,21 @@
+.container{
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  height: 3rem;
+  background-color: aliceblue;
+}
+.bi{
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.active{
+  background-color: aqua;
+}
+
+.isDisabled{
+  background-color: gray;
+}

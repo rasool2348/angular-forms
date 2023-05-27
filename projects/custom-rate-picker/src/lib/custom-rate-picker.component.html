@@ -1,0 +1,6 @@
+<div class="container" [ngClass]="{isDisabled: disabled}">
+  <i (click)="setValue('great')" class="bi bi-emoji-heart-eyes" [ngClass]="{active: value == 'great'}"></i>
+  <i (click)="setValue('good')" class="bi bi-emoji-smile" [ngClass]="{active: value == 'good'}"></i>
+  <i (click)="setValue('normal')" class="bi bi-emoji-neutral" [ngClass]="{active: value == 'normal'}"></i>
+  <i (click)="setValue('bad')" class="bi bi-emoji-angry" [ngClass]="{active: value == 'bad'}"></i>
+</div>

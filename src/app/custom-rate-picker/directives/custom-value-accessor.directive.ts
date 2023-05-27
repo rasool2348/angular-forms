@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer2, Sanitizer, SecurityContext } from '@angular/core';
+import { Directive, ElementRef, HostListener, Renderer2, Sanitizer, SecurityContext } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -18,6 +18,18 @@ export class CustomValueAccessorDirective implements ControlValueAccessor {
     private elementRef:ElementRef,
     private sanitizer:DomSanitizer) { }
 
+
+  onChange!:(newValue:string) => void;
+  onTouch!:() => void;
+
+  @HostListener('input',['$event']) onInput(e:Event){
+    this.onChange((e.target as HTMLElement).innerHTML);
+  }
+
+  @HostListener('blur') onBlur(){
+    this.onTouch();
+  }
+
   writeValue(obj: any): void {
     console.log('writeValue called.',obj);
     this.renderer.setProperty(
@@ -28,12 +40,20 @@ export class CustomValueAccessorDirective implements ControlValueAccessor {
   }
   registerOnChange(fn: any): void {
     console.log('registerOnChange not implemented.',fn);
+    this.onChange = fn;
+
   }
   registerOnTouched(fn: any): void {
     console.log('registerOnTouched not implemented.',fn);
+    this.onTouch = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
     console.log('setDisablesState not implemented.',isDisabled);
+    this.renderer.setProperty(
+      this.elementRef.nativeElement,
+      'contentEditable',
+      !isDisabled
+    )
   }
 
   
