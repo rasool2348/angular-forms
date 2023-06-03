@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import '@polymer/paper-input/paper-textarea';
 import { CustomRatePickerComponent, DomainPickerComponent, RatingOption, Site } from 'custom-rate-picker';
 import { CustomValueAccessorDirective } from './directives/custom-value-accessor.directive';
@@ -23,7 +23,7 @@ export class CustomRatePicker implements OnInit {
   }
 
   form = this.fb.group({
-    reviewText:'Your Review...',
+    reviewText:['',[Validators.required]],
     reviewRate: 'great',
     website:this.website
   })
@@ -31,7 +31,10 @@ export class CustomRatePicker implements OnInit {
   ngOnInit(): void {
     //this.form.controls.reviewText.disable();
      //this.form.controls.reviewRate.disable();
-     this.form.controls.website.disable()
+     //this.form.controls.website.disable()
+    //  this.form.controls.reviewText.valueChanges.subscribe(
+    //   value => console.log(value)
+    //  )
   }
 
   onSubmit(){
